@@ -12,17 +12,18 @@ scene.background = new THREE.Color(0x12141c);
 
 // // Texture
 const textureLoader = new THREE.TextureLoader();
-const texture = textureLoader.load("textures/earthmap.webp");
+const texture = textureLoader.load("textures/earthmap2.webp");
 
 // sphere
 const earth = new THREE.Group();
-const geometry = new THREE.SphereGeometry(2, 32, 32);
+const geometry = new THREE.IcosahedronGeometry(3, 12);
 
 const sphereMesh = new THREE.Mesh(
   geometry,
-  new THREE.MeshBasicMaterial({
+  new THREE.MeshStandardMaterial({
     alphaMap: texture,
     transparent: true,
+    side: THREE.DoubleSide,
   })
 );
 earth.add(sphereMesh);
@@ -36,9 +37,9 @@ scene.add(earth);
 // /**
 //  * Lights
 //  */
-// // Ambient light
-// const ambientLight = new THREE.AmbientLight("#ffffff", 2);
-// scene.add(ambientLight);
+// Ambient light
+const ambientLight = new THREE.AmbientLight("#ffffff", 2);
+scene.add(ambientLight);
 
 /**
  * Sizes
@@ -81,8 +82,6 @@ scene.add(camera);
 const controls = new OrbitControls(camera, canvas);
 controls.enableZoom = false;
 controls.enableDamping = true;
-controls.maxPolarAngle = Math.PI * 0.5;
-controls.minPolarAngle = Math.PI * 0.4;
 
 /**
  * Renderer
