@@ -12,7 +12,7 @@ scene.background = new THREE.Color(0x12141c);
 
 // // Texture
 const textureLoader = new THREE.TextureLoader();
-const texture = textureLoader.load("textures/earthmap2.webp");
+const texture = textureLoader.load("textures/earthmap.jpg");
 
 // sphere
 const earth = new THREE.Group();
