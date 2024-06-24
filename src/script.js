@@ -12,7 +12,7 @@ scene.background = new THREE.Color(0x12141c);
 
 // // Texture
 const textureLoader = new THREE.TextureLoader();
-const texture = textureLoader.load("textures/2k_earth_nightmap.jpg");
+const texture = textureLoader.load("textures/earthmap.jpg");
 
 // sphere
 const earth = new THREE.Group();
@@ -21,10 +21,9 @@ const geometry = new THREE.IcosahedronGeometry(3, 12);
 const sphereMesh = new THREE.Mesh(
   geometry,
   new THREE.MeshStandardMaterial({
-    // alphaMap: texture,
-    // transparent: true,
-    map: texture,
-    // side: THREE.DoubleSide,
+    alphaMap: texture,
+    transparent: true,
+    side: THREE.DoubleSide,
   })
 );
 earth.add(sphereMesh);
