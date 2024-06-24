@@ -8,18 +8,21 @@ const canvas = document.querySelector("canvas.webgl");
 
 // Scene
 const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x12141c);
 
-// Texture
+// // Texture
 const textureLoader = new THREE.TextureLoader();
-const texture = textureLoader.load("textures/03_earthlights1k.jpg");
+const texture = textureLoader.load("textures/earthmap.webp");
 
 // sphere
 const earth = new THREE.Group();
 const geometry = new THREE.SphereGeometry(2, 32, 32);
+
 const sphereMesh = new THREE.Mesh(
   geometry,
-  new THREE.MeshStandardMaterial({
-    map: texture,
+  new THREE.MeshBasicMaterial({
+    alphaMap: texture,
+    transparent: true,
   })
 );
 earth.add(sphereMesh);
@@ -30,12 +33,12 @@ earth.add(glowMesh);
 
 scene.add(earth);
 
-/**
- * Lights
- */
-// Ambient light
-const ambientLight = new THREE.AmbientLight("#ffffff", 2);
-scene.add(ambientLight);
+// /**
+//  * Lights
+//  */
+// // Ambient light
+// const ambientLight = new THREE.AmbientLight("#ffffff", 2);
+// scene.add(ambientLight);
 
 /**
  * Sizes
@@ -83,6 +86,7 @@ controls.enableDamping = true;
  */
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
+  antialias: true,
 });
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
