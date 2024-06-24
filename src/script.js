@@ -80,7 +80,8 @@ scene.add(camera);
 
 // Controls
 const controls = new OrbitControls(camera, canvas);
-controls.enableZoom = false;
+controls.maxDistance = 20;
+controls.minDistance = 5;
 controls.enableDamping = true;
 
 /**
@@ -104,7 +105,7 @@ const tick = () => {
   const elapsedTime = timer.getElapsed();
 
   // earth
-  earth.rotation.y = elapsedTime * 0.2;
+  earth.rotation.y = elapsedTime * 0.1;
 
   // Update controls
   controls.update();
